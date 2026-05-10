@@ -18,7 +18,6 @@ const achievementData = {
       label: "MedTech Domain",
       author: "Seetharam Damarla",
       published: "2025",
-      url: "#",
       image: "/zenith.jpg",
     },
     {
@@ -29,7 +28,6 @@ const achievementData = {
       label: "Innovation",
       author: "Seetharam Damarla",
       published: "2025",
-      url: "#",
       image: "/saber.jpg",
     },
     {
@@ -40,7 +38,6 @@ const achievementData = {
       label: "OWASP CTF",
       author: "Seetharam Damarla",
       published: "2025",
-      url: "#",
       image: "/hackers-gambit.png",
     },
   ],

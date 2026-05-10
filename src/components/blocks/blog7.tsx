@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -16,7 +17,7 @@ interface Post {
   label: string;
   author: string;
   published: string;
-  url: string;
+  url?: string;
   image: string;
 }
 
@@ -67,24 +68,38 @@ const Blog7 = ({
           {posts.map((post) => (
             <Card key={post.id} className="grid grid-rows-[auto_1fr] bg-[#0a0a0a] border-neutral-800 transition-colors hover:border-neutral-700 overflow-hidden">
               <div className="aspect-[16/10] w-full bg-neutral-900">
-                <a
-                  href={post.url}
-                  target="_blank"
-                  className="transition-opacity duration-200 fade-in hover:opacity-70 h-full w-full block"
-                >
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    className="h-full w-full object-cover object-top"
-                  />
-                </a>
+                {post.url ? (
+                  <a
+                    href={post.url}
+                    target="_blank"
+                    className="transition-opacity duration-200 fade-in hover:opacity-70 h-full w-full block"
+                  >
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      className="h-full w-full object-cover object-top"
+                    />
+                  </a>
+                ) : (
+                  <div className="h-full w-full block">
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      className="h-full w-full object-cover object-top"
+                    />
+                  </div>
+                )}
               </div>
               <div className="flex flex-col">
                 <CardHeader className="p-4 md:p-5">
-                  <h3 className="text-base font-bold hover:underline md:text-lg text-white">
-                    <a href={post.url} target="_blank">
-                      {post.title}
-                    </a>
+                  <h3 className={cn("text-base font-bold md:text-lg text-white", post.url && "hover:underline")}>
+                    {post.url ? (
+                      <a href={post.url} target="_blank">
+                        {post.title}
+                      </a>
+                    ) : (
+                      post.title
+                    )}
                   </h3>
                 </CardHeader>
                 <CardContent className="p-4 md:p-5 pt-0">
