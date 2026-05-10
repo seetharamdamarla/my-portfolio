@@ -31,7 +31,7 @@ const PROJECT_ITEMS = {
 			id: "4",
 			title: "PhishGuard",
 			summary: "Built an AI-powered phishing detection platform achieving 95% accuracy. Developed a real-time risk scoring engine to analyze threat indicators and a security awareness dashboard.",
-			url: "#",
+			url: "https://phishguard-three.vercel.app/",
 			image: "https://drive.google.com/thumbnail?id=1y6xhJT99MxQHcvVFAKHADsdjADZC9tFF&sz=w1200",
 		},
 	],
