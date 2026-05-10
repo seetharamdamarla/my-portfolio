@@ -8,13 +8,19 @@ import { Projects } from "@/components/projects";
 import { Skills } from "@/components/skills";
 import { Achievements } from "@/components/achievements";
 import { Footer } from "@/components/footer";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 export default function Home() {
   const customWords = ["SEETHARAM DAMARLA"];
   const [showLoader, setShowLoader] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [showHero, setShowHero] = useState(false);
+
+  const handleLoadingComplete = useCallback(() => {
+    setTimeout(() => {
+      setIsLoaded(true);
+    }, 800);
+  }, []);
 
   useEffect(() => {
     // Show the loader after 2.5 seconds
@@ -50,11 +56,7 @@ export default function Home() {
           >
             {showLoader && (
               <LoadingButton
-                onComplete={() => {
-                  setTimeout(() => {
-                    setIsLoaded(true);
-                  }, 800);
-                }}
+                onComplete={handleLoadingComplete}
               />
             )}
           </div>
