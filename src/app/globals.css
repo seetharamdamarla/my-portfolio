@@ -64,3 +64,31 @@ body {
 .animate-spotlight {
   animation: spotlight 2s ease .75s 1 forwards;
 }
+
+/* Custom Cursor Hiding Configuration for Desktop pointer systems */
+@media (any-hover: hover) {
+  html, body, a, button, input, select, textarea, [role="button"] {
+    cursor: none !important;
+  }
+}
+
+/* Lenis Scroll Base */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
