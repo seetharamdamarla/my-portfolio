@@ -19,6 +19,7 @@ interface Project {
   textClass: string;
   badgeStyle: string;
   techStack: string[];
+  imageClass?: string;
 }
 
 const PROJECTS: Project[] = [
@@ -29,7 +30,7 @@ const PROJECTS: Project[] = [
     subtitle: "Security Operations & Ingestion Lab",
     summary: "Architected a full SOC monitoring lab processing 400+ live security alerts. Integrated FIM, IOC threat intelligence feeds, and custom Wazuh detection rules mapped to MITRE ATT&CK tactics.",
     url: "https://github.com/seetharamdamarla/SentinelSIEM",
-    image: "https://drive.google.com/thumbnail?id=1KDH6fpKDNMxV4jRdYyA6tZbeDKNpEJ_B&sz=w1200",
+    image: "/1.png",
     status: "ACTIVE LAB",
     accentColor: "purple",
     glowClass: "hover:border-purple-500/25 hover:shadow-[0_0_35px_rgba(160,124,246,0.03)]",
@@ -44,7 +45,7 @@ const PROJECTS: Project[] = [
     subtitle: "Kernel Packet Filter & WebGL Analytics",
     summary: "Built an end-to-end SOC pipeline to detect port scans and floods. Automated kernel-level IP blocking via nftables and developed a 3D WebGL dashboard for real-time geo-visualization.",
     url: "https://github.com/seetharamdamarla/personal-firewall",
-    image: "/personal-firewall.png",
+    image: "/Screenshot 2026-06-04 at 6.40.34 PM.png",
     status: "DELEGATED LAB",
     accentColor: "rose",
     glowClass: "hover:border-rose-500/25 hover:shadow-[0_0_35px_rgba(244,63,94,0.03)]",
@@ -59,28 +60,13 @@ const PROJECTS: Project[] = [
     subtitle: "Splunk Ingestion & SSH Threat Hunting",
     summary: "Ingested & correlated SSH auth logs using SPL queries to surface brute-force campaigns. Built automated threshold-based alerts and dashboards mapping attacker IPs to geo-origins.",
     url: "https://github.com/seetharamdamarla/ssh-log-analysis-splunk",
-    image: "https://drive.google.com/thumbnail?id=1Qk_MGhmOvNYoomwxOZO6Ol_YJJrXyvDJ&sz=w1200",
+    image: "/2.png",
     status: "COMPLETED LAB",
     accentColor: "cyan",
     glowClass: "hover:border-cyan-500/25 hover:shadow-[0_0_35px_rgba(56,189,248,0.03)]",
     textClass: "text-cyan-400 group-hover/project:text-cyan-300",
     badgeStyle: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
     techStack: ["Splunk Enterprise", "SPL Querying", "Geo IP Correlator", "Linux Syslog"]
-  },
-  {
-    id: "4",
-    tag: "PROJ.SHLD-04",
-    title: "PhishGuard",
-    subtitle: "AI Threat Scanner & Phishing Shield",
-    summary: "Built an AI-powered phishing detection platform achieving 95% accuracy. Developed a real-time risk scoring engine to analyze threat indicators and a security awareness dashboard.",
-    url: "https://phishguard-three.vercel.app/",
-    image: "https://drive.google.com/thumbnail?id=1y6xhJT99MxQHcvVFAKHADsdjADZC9tFF&sz=w1200",
-    status: "LIVE PORTAL",
-    accentColor: "emerald",
-    glowClass: "hover:border-emerald-500/25 hover:shadow-[0_0_35px_rgba(16,185,129,0.03)]",
-    textClass: "text-emerald-400 group-hover/project:text-emerald-300",
-    badgeStyle: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
-    techStack: ["PyTorch AI", "Flask Web", "Next.js 15", "Vercel Hosting", "Risk Assessment"]
   }
 ];
 
@@ -196,22 +182,13 @@ export function Projects() {
 
                   {/* High-Tech Screen Viewport for screenshot */}
                   <div className="w-full aspect-[16/10] overflow-hidden rounded-xl border border-white/5 relative bg-neutral-950/70 group/viewport mt-3 mb-5">
-                    {/* Viewport backdrop color glow */}
-                    <div 
-                      className="absolute inset-0 opacity-0 group-hover/project:opacity-20 transition-opacity duration-700 pointer-events-none z-10"
-                      style={{
-                        background: `radial-gradient(circle at center, var(--glow-color, #a07cf6) 0%, transparent 80%)`,
-                      }}
-                    />
 
-                    {/* Security camera scanner grid lines */}
-                    <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,255,255,0.01),rgba(255,255,255,0.005),rgba(255,255,255,0.01))] bg-[size:100%_4px,6px_100%] pointer-events-none z-20 opacity-30 group-hover/viewport:opacity-40 transition-opacity" />
 
                     {/* Project Screenshot */}
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover object-center transition-transform duration-700 group-hover/project:scale-103 group-hover/project:rotate-[0.5deg] relative z-0"
+                      className={`w-full h-full object-center transition-transform duration-700 relative z-0 ${project.imageClass || "object-cover"}`}
                       loading="lazy"
                     />
                   </div>

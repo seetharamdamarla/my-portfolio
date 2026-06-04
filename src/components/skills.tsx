@@ -8,6 +8,7 @@ interface Skill {
   name: string;
   icon: string;
   glowColor: string;
+  imageClass?: string;
 }
 
 interface Category {
@@ -35,15 +36,13 @@ const CATEGORIES: Category[] = [
     borderHover: "hover:border-purple-500/25 hover:shadow-[0_0_30px_rgba(160,124,246,0.03)]",
     badgeStyle: "bg-purple-500/10 text-purple-400 border-purple-500/20",
     skills: [
-      { name: "Splunk SIEM", icon: "https://cdn.simpleicons.org/splunk/68A063", glowColor: "rgba(104, 160, 99, 0.12)" },
-      { 
-        name: "Wazuh", 
-        icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233C99DC' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/%3E%3Cpath d='M9 12l2 2 4-4'/%3E%3C/svg%3E", 
-        glowColor: "rgba(60, 153, 220, 0.12)" 
-      },
-      { name: "Wireshark", icon: "https://cdn.simpleicons.org/wireshark", glowColor: "rgba(24, 91, 163, 0.12)" },
-      { name: "IOC Analysis", icon: "https://cdn.simpleicons.org/virustotal/394EFF", glowColor: "rgba(57, 78, 255, 0.12)" },
-      { name: "Incident Resp.", icon: "https://cdn.simpleicons.org/opsgenie/EF4444", glowColor: "rgba(239, 68, 68, 0.12)" },
+      { name: "Splunk", icon: "/icons/splunk.svg", glowColor: "rgba(104, 160, 99, 0.12)", imageClass: "w-12 h-12 md:w-14 md:h-14" },
+      { name: "Wazuh", icon: "/icons/wazuh.svg", glowColor: "rgba(60, 153, 220, 0.12)" },
+      { name: "Microsoft Sentinel", icon: "/icons/sentinel.svg", glowColor: "rgba(0, 137, 214, 0.12)" },
+      { name: "Microsoft Defender", icon: "/icons/defender.svg", glowColor: "rgba(0, 120, 214, 0.12)" },
+      { name: "Wireshark", icon: "/icons/wireshark.svg", glowColor: "rgba(24, 91, 163, 0.12)" },
+      { name: "VirusTotal", icon: "/icons/virustotal.svg", glowColor: "rgba(57, 78, 255, 0.12)" },
+      { name: "Suricata (IDS/IPS)", icon: "/icons/suricata.svg", glowColor: "rgba(239, 59, 45, 0.12)" },
     ]
   },
   {
@@ -57,15 +56,16 @@ const CATEGORIES: Category[] = [
     borderHover: "hover:border-rose-500/25 hover:shadow-[0_0_30px_rgba(244,63,94,0.03)]",
     badgeStyle: "bg-rose-500/10 text-rose-400 border-rose-500/20",
     skills: [
-      { name: "Burp Suite", icon: "https://cdn.simpleicons.org/burpsuite/FF6633", glowColor: "rgba(255, 102, 51, 0.12)" },
-      { name: "Metasploit", icon: "https://cdn.simpleicons.org/metasploit/white", glowColor: "rgba(255, 255, 255, 0.08)" },
-      { 
-        name: "Nmap", 
-        icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2322C55E' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20'/%3E%3Cpath d='M2 12h20'/%3E%3C/svg%3E", 
-        glowColor: "rgba(34, 197, 94, 0.12)" 
-      },
-      { name: "OWASP Top 10", icon: "https://cdn.simpleicons.org/owasp/white", glowColor: "rgba(255, 255, 255, 0.08)" },
-      { name: "VAPT", icon: "https://cdn.simpleicons.org/kalilinux/white", glowColor: "rgba(255, 255, 255, 0.08)" },
+      { name: "Burp Suite", icon: "/icons/burpsuite.svg", glowColor: "rgba(255, 102, 51, 0.12)" },
+      { name: "Metasploit", icon: "/icons/metasploit.svg", glowColor: "rgba(255, 255, 255, 0.08)" },
+      { name: "Nmap", icon: "/icons/nmap.svg", glowColor: "rgba(34, 197, 94, 0.12)" },
+      { name: "John The Ripper", icon: "/icons/john.svg", glowColor: "rgba(248, 113, 113, 0.12)" },
+      { name: "Nessus", icon: "/icons/nessus.svg", glowColor: "rgba(96, 165, 250, 0.12)" },
+      { name: "SQLmap", icon: "/icons/sqlmap.svg", glowColor: "rgba(56, 189, 248, 0.12)" },
+      { name: "Hashcat", icon: "/icons/hashcat.svg", glowColor: "rgba(163, 230, 53, 0.12)" },
+      { name: "Gobuster", icon: "/icons/gobuster.svg", glowColor: "rgba(167, 139, 250, 0.12)" },
+      { name: "Hydra", icon: "/icons/hydra.svg", glowColor: "rgba(251, 191, 36, 0.12)" },
+      { name: "Aircrack", icon: "/icons/aircrack.svg", glowColor: "rgba(52, 211, 153, 0.12)" },
     ]
   },
   {
@@ -79,19 +79,16 @@ const CATEGORIES: Category[] = [
     borderHover: "hover:border-cyan-500/25 hover:shadow-[0_0_30px_rgba(56,189,248,0.03)]",
     badgeStyle: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
     skills: [
-      { name: "Linux Systems", icon: "https://cdn.simpleicons.org/linux/white", glowColor: "rgba(255, 255, 255, 0.08)" },
-      { name: "Cloud WAF", icon: "https://cdn.simpleicons.org/cloudflare", glowColor: "rgba(243, 128, 32, 0.12)" },
-      { 
-        name: "Wireless Sec.", 
-        icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2322C55E' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 20h.01'/%3E%3Cpath d='M2 8.82a15 15 0 0 1 20 0'/%3E%3Cpath d='M5 12.86a10 10 0 0 1 14 0'/%3E%3Cpath d='M8.5 16.43a5 5 0 0 1 7 0'/%3E%3C/svg%3E", 
-        glowColor: "rgba(34, 197, 94, 0.12)" 
-      },
+      { name: "Linux Systems", icon: "/icons/linux.svg", glowColor: "rgba(255, 255, 255, 0.08)" },
+      { name: "Windows Systems", icon: "/icons/windows.svg", glowColor: "rgba(0, 120, 214, 0.12)" },
+      { name: "Cloud WAF", icon: "/icons/cloudflare.svg", glowColor: "rgba(243, 128, 32, 0.12)" },
+      { name: "OWASP Top 10", icon: "/icons/owasp.svg", glowColor: "rgba(255, 255, 255, 0.08)" },
       { 
         name: "MITRE ATT&CK", 
         icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23EF4444' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Ccircle cx='12' cy='12' r='6'/%3E%3Ccircle cx='12' cy='12' r='2'/%3E%3Cline x1='12' y1='2' x2='12' y2='6'/%3E%3Cline x1='12' y1='18' x2='12' y2='22'/%3E%3Cline x1='2' y1='12' x2='6' y2='12'/%3E%3Cline x1='18' y1='12' x2='22' y2='12'/%3E%3C/svg%3E", 
         glowColor: "rgba(239, 68, 68, 0.12)" 
       },
-      { name: "Git Control", icon: "https://cdn.simpleicons.org/git", glowColor: "rgba(240, 80, 51, 0.12)" },
+      { name: "Git Control", icon: "/icons/git.svg", glowColor: "rgba(240, 80, 51, 0.12)" },
     ]
   },
   {
@@ -105,12 +102,11 @@ const CATEGORIES: Category[] = [
     borderHover: "hover:border-emerald-500/25 hover:shadow-[0_0_30px_rgba(16,185,129,0.03)]",
     badgeStyle: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
     skills: [
-      { name: "Python", icon: "https://cdn.simpleicons.org/python", glowColor: "rgba(55, 115, 165, 0.12)" },
-      { name: "Bash Shell", icon: "https://cdn.simpleicons.org/gnubash/white", glowColor: "rgba(255, 255, 255, 0.08)" },
-      { name: "PowerShell", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/powershell/powershell-original.svg", glowColor: "rgba(83, 145, 241, 0.12)" },
-      { name: "SQL DB", icon: "https://cdn.simpleicons.org/mysql/white", glowColor: "rgba(255, 255, 255, 0.08)" },
-      { name: "Flask Web", icon: "https://cdn.simpleicons.org/flask/white", glowColor: "rgba(255, 255, 255, 0.08)" },
-      { name: "Scapy Packet", icon: "https://cdn.simpleicons.org/python/22C55E", glowColor: "rgba(34, 197, 94, 0.12)" },
+      { name: "Python", icon: "/icons/python.svg", glowColor: "rgba(55, 115, 165, 0.12)" },
+      { name: "Bash Shell", icon: "/icons/bash.svg", glowColor: "rgba(255, 255, 255, 0.08)" },
+      { name: "PowerShell", icon: "/icons/powershell.svg", glowColor: "rgba(83, 145, 241, 0.12)" },
+      { name: "SQL DB", icon: "/icons/mysql.svg", glowColor: "rgba(255, 255, 255, 0.08)" },
+      { name: "Flask Web", icon: "/icons/flask.svg", glowColor: "rgba(255, 255, 255, 0.08)" },
     ]
   }
 ];
@@ -218,7 +214,7 @@ export function Skills() {
               <motion.div
                 key={category.id}
                 variants={categoryVariants}
-                className={`group flex flex-col justify-between rounded-2xl bg-[#070708]/80 border border-white/5 p-6 md:p-8 backdrop-blur-xl relative overflow-hidden transition-all duration-500 ${category.borderHover}`}
+                className={`group flex flex-col justify-start rounded-2xl bg-[#070708]/80 border border-white/5 p-6 md:p-8 backdrop-blur-xl relative overflow-hidden transition-all duration-500 ${category.borderHover}`}
               >
                 {/* Custom Gradient Background Glow on Hover */}
                 <div className={`absolute -inset-px bg-gradient-to-br ${category.bgGlow} opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none rounded-2xl`} />
@@ -272,7 +268,7 @@ export function Skills() {
                         alt={skill.name}
                         width={28}
                         height={28}
-                        className="w-7 h-7 md:w-8 md:h-8 object-contain transition-transform duration-500 group-hover/skill:scale-110 relative z-10"
+                        className={`${skill.imageClass || "w-7 h-7 md:w-8 md:h-8"} object-contain transition-transform duration-500 group-hover/skill:scale-110 relative z-10`}
                         loading="lazy"
                       />
 
