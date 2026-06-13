@@ -25,18 +25,18 @@ interface Project {
 const PROJECTS: Project[] = [
   {
     id: "1",
-    tag: "PROJ.SIEM-01",
-    title: "SentinelSIEM",
-    subtitle: "Security Operations & Ingestion Lab",
-    summary: "Architected a full SOC monitoring lab processing 400+ live security alerts. Integrated FIM, IOC threat intelligence feeds, and custom Wazuh detection rules mapped to MITRE ATT&CK tactics.",
-    url: "https://github.com/seetharamdamarla/SentinelSIEM",
-    image: "/1.png",
+    tag: "PROJ.SPLK-01",
+    title: "Enterprise Splunk",
+    subtitle: "SOC Deception & Threat Intelligence Lab",
+    summary: "Architected an end-to-end SOC deception environment using Cowrie honeypot. Engineered automated Splunk SIEM logging, developed executive dashboards, and integrated VirusTotal API for real-time threat intelligence enrichment.",
+    url: "https://github.com/seetharamdamarla/enterprise-splunk",
+    image: "/dashboard.png",
     status: "ACTIVE LAB",
-    accentColor: "purple",
-    glowClass: "hover:border-purple-500/25 hover:shadow-[0_0_35px_rgba(160,124,246,0.03)]",
-    textClass: "text-purple-400 group-hover/project:text-purple-300",
-    badgeStyle: "bg-purple-500/10 text-purple-400 border-purple-500/20",
-    techStack: ["Wazuh", "Splunk SIEM", "MITRE ATT&CK", "FIM", "Syslog-ng"]
+    accentColor: "emerald",
+    glowClass: "hover:border-emerald-500/25 hover:shadow-[0_0_35px_rgba(16,185,129,0.03)]",
+    textClass: "text-emerald-400 group-hover/project:text-emerald-300",
+    badgeStyle: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
+    techStack: ["Splunk SIEM", "Python", "Cowrie Honeypot", "Linux", "VirusTotal API"]
   },
   {
     id: "2",
@@ -55,18 +55,18 @@ const PROJECTS: Project[] = [
   },
   {
     id: "3",
-    tag: "PROJ.ANLY-03",
-    title: "SSH Log Analysis",
-    subtitle: "Splunk Ingestion & SSH Threat Hunting",
-    summary: "Ingested & correlated SSH auth logs using SPL queries to surface brute-force campaigns. Built automated threshold-based alerts and dashboards mapping attacker IPs to geo-origins.",
-    url: "https://github.com/seetharamdamarla/ssh-log-analysis-splunk",
-    image: "/2.png",
-    status: "COMPLETED LAB",
-    accentColor: "cyan",
-    glowClass: "hover:border-cyan-500/25 hover:shadow-[0_0_35px_rgba(56,189,248,0.03)]",
-    textClass: "text-cyan-400 group-hover/project:text-cyan-300",
-    badgeStyle: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
-    techStack: ["Splunk Enterprise", "SPL Querying", "Geo IP Correlator", "Linux Syslog"]
+    tag: "PROJ.SIEM-01",
+    title: "SentinelSIEM",
+    subtitle: "Security Operations & Ingestion Lab",
+    summary: "Architected a full SOC monitoring lab processing 400+ live security alerts. Integrated FIM, IOC threat intelligence feeds, and custom Wazuh detection rules mapped to MITRE ATT&CK tactics.",
+    url: "https://github.com/seetharamdamarla/SentinelSIEM",
+    image: "/1.png",
+    status: "ACTIVE LAB",
+    accentColor: "purple",
+    glowClass: "hover:border-purple-500/25 hover:shadow-[0_0_35px_rgba(160,124,246,0.03)]",
+    textClass: "text-purple-400 group-hover/project:text-purple-300",
+    badgeStyle: "bg-purple-500/10 text-purple-400 border-purple-500/20",
+    techStack: ["Wazuh", "Splunk SIEM", "MITRE ATT&CK", "FIM", "Syslog-ng"]
   }
 ];
 
