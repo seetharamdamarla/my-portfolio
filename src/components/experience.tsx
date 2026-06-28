@@ -1,97 +1,170 @@
-import React from "react";
-import { Timeline } from "@/components/ui/timeline";
-import { Terminal } from "lucide-react";
+"use client";
+import React, { useEffect, useRef, useState } from "react";
+import { useScroll, useTransform, motion } from "framer-motion";
 
 export function Experience() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const lineRef = useRef<HTMLDivElement>(null);
+  const [lineHeight, setLineHeight] = useState(0);
+
+  useEffect(() => {
+    if (lineRef.current) {
+      const rect = lineRef.current.getBoundingClientRect();
+      setLineHeight(rect.height);
+    }
+  }, []);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start 40%", "end 80%"],
+  });
+
+  const heightTransform = useTransform(scrollYProgress, [0, 1], [0, lineHeight]);
+  const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
+
   const data = [
     {
-      title: "Sep 2025",
+      year: "2025",
+      role: "Cybersecurity Intern",
+      subtitle: "Web App Security",
+      company: "CodeAlpha",
       content: (
-        <div className="relative group w-full mb-8">
-          {/* Glassmorphic Operation Card */}
-          <div className="bg-black/40 border border-white/10 backdrop-blur-md rounded-2xl p-6 md:p-8 transition-all duration-500 group-hover:border-[#a07cf6]/50 group-hover:bg-black/60 group-hover:-translate-y-1 shadow-lg group-hover:shadow-[0_8px_30px_rgba(160,124,246,0.15)] overflow-hidden">
-            
-            {/* Background Glitch Accent */}
-            <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full blur-3xl -mr-10 -mt-10 transition-opacity duration-500 opacity-0 group-hover:opacity-100 pointer-events-none"></div>
-
-            {/* Header: Company & Badge */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4 relative z-10">
-              <h4 className="text-neutral-100 text-2xl md:text-3xl font-bold tracking-tight">
-                CodeAlpha
-              </h4>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-[10px] md:text-xs font-mono tracking-widest self-start md:self-auto">
-                <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
-                MISSION_COMPLETE
-              </div>
-            </div>
-
-            {/* Role */}
-            <div className="flex flex-wrap items-center gap-2 mb-8 text-xs md:text-sm lg:text-base font-mono uppercase tracking-widest relative z-10">
-              <Terminal size={16} className="shrink-0 text-[#a07cf6]" />
-              <span className="text-neutral-300">Cybersecurity Intern — Web App Security</span>
-            </div>
-
-            {/* Details (Terminal output style) */}
-            <div className="space-y-5 font-mono relative z-10">
-              <div className="flex items-start gap-3 text-sm md:text-base text-neutral-400 leading-relaxed group/item">
-                <span className="text-neutral-500 font-bold mt-0.5 select-none text-lg leading-none transition-transform group-hover/item:translate-x-1">{'>'}</span> 
-                <p>Executed OWASP Top 10 assessments on live web apps, uncovering <strong className="text-white font-medium bg-white/10 px-1.5 py-0.5 rounded">15+ critical vulnerabilities</strong> (SQLi, XSS, broken auth).</p>
-              </div>
-              <div className="flex items-start gap-3 text-sm md:text-base text-neutral-400 leading-relaxed group/item">
-                <span className="text-neutral-500 font-bold mt-0.5 select-none text-lg leading-none transition-transform group-hover/item:translate-x-1">{'>'}</span> 
-                <p>Deployed firewall ACL rules achieving a <strong className="text-white font-medium bg-white/10 px-1.5 py-0.5 rounded">30% reduction</strong> in exploitable attack surface.</p>
-              </div>
-            </div>
+        <div className="space-y-5 font-mono">
+          <div className="flex items-start gap-3 text-sm md:text-base text-neutral-400 leading-relaxed group/item">
+            <span className="text-neutral-500 font-bold mt-0.5 select-none text-lg leading-none transition-transform group-hover/item:translate-x-1">{'>'}</span>
+            <p>Executed OWASP Top 10 assessments on live web apps, uncovering <strong className="text-white font-medium bg-white/10 px-1.5 py-0.5 rounded">15+ critical vulnerabilities</strong> (SQLi, XSS, broken auth).</p>
+          </div>
+          <div className="flex items-start gap-3 text-sm md:text-base text-neutral-400 leading-relaxed group/item">
+            <span className="text-neutral-500 font-bold mt-0.5 select-none text-lg leading-none transition-transform group-hover/item:translate-x-1">{'>'}</span>
+            <p>Deployed firewall ACL rules achieving a <strong className="text-white font-medium bg-white/10 px-1.5 py-0.5 rounded">30% reduction</strong> in exploitable attack surface.</p>
           </div>
         </div>
       ),
     },
     {
-      title: "Jun 2025",
+      year: "2025",
+      role: "Cybersecurity Intern",
+      subtitle: "Network Security & VAPT",
+      company: "Elevate Labs",
       content: (
-        <div className="relative group w-full mb-8">
-          {/* Glassmorphic Operation Card */}
-          <div className="bg-black/40 border border-white/10 backdrop-blur-md rounded-2xl p-6 md:p-8 transition-all duration-500 group-hover:border-[#a07cf6]/50 group-hover:bg-black/60 group-hover:-translate-y-1 shadow-lg group-hover:shadow-[0_8px_30px_rgba(160,124,246,0.15)] overflow-hidden">
-            
-            {/* Background Glitch Accent */}
-            <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full blur-3xl -mr-10 -mt-10 transition-opacity duration-500 opacity-0 group-hover:opacity-100 pointer-events-none"></div>
-
-            {/* Header: Company & Badge */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4 relative z-10">
-              <h4 className="text-neutral-100 text-2xl md:text-3xl font-bold tracking-tight">
-                Elevate Labs
-              </h4>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-[10px] md:text-xs font-mono tracking-widest self-start md:self-auto">
-                <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
-                MISSION_COMPLETE
-              </div>
-            </div>
-
-            {/* Role */}
-            <div className="flex flex-wrap items-center gap-2 mb-8 text-xs md:text-sm lg:text-base font-mono uppercase tracking-widest relative z-10">
-              <Terminal size={16} className="shrink-0 text-[#a07cf6]" />
-              <span className="text-neutral-300">Cybersecurity Intern — Network Security & VAPT</span>
-            </div>
-
-            {/* Details (Terminal output style) */}
-            <div className="space-y-5 font-mono relative z-10">
-              <div className="flex items-start gap-3 text-sm md:text-base text-neutral-400 leading-relaxed group/item">
-                <span className="text-neutral-500 font-bold mt-0.5 select-none text-lg leading-none transition-transform group-hover/item:translate-x-1">{'>'}</span> 
-                <p>Detected and documented <strong className="text-white font-medium bg-white/10 px-1.5 py-0.5 rounded">20+ critical network vulnerabilities</strong> through deep-packet inspection with Wireshark, earning <strong className="text-white font-medium text-[#a07cf6]">"Best Performer"</strong> recognition.</p>
-              </div>
-              <div className="flex items-start gap-3 text-sm md:text-base text-neutral-400 leading-relaxed group/item">
-                <span className="text-neutral-500 font-bold mt-0.5 select-none text-lg leading-none transition-transform group-hover/item:translate-x-1">{'>'}</span> 
-                <p>Delivered structured CVSS-scored remediation reports that enabled developers to patch critical exploits within <strong className="text-white font-medium bg-white/10 px-1.5 py-0.5 rounded">48 hours</strong>, reducing MTTR significantly.</p>
-              </div>
-            </div>
+        <div className="space-y-5 font-mono">
+          <div className="flex items-start gap-3 text-sm md:text-base text-neutral-400 leading-relaxed group/item">
+            <span className="text-neutral-500 font-bold mt-0.5 select-none text-lg leading-none transition-transform group-hover/item:translate-x-1">{'>'}</span>
+            <p>Detected and documented <strong className="text-white font-medium bg-white/10 px-1.5 py-0.5 rounded">20+ critical network vulnerabilities</strong> through deep-packet inspection with Wireshark, earning <strong className="text-white font-medium text-[#a07cf6]">"Best Performer"</strong> recognition.</p>
+          </div>
+          <div className="flex items-start gap-3 text-sm md:text-base text-neutral-400 leading-relaxed group/item">
+            <span className="text-neutral-500 font-bold mt-0.5 select-none text-lg leading-none transition-transform group-hover/item:translate-x-1">{'>'}</span>
+            <p>Delivered structured CVSS-scored remediation reports that enabled developers to patch critical exploits within <strong className="text-white font-medium bg-white/10 px-1.5 py-0.5 rounded">48 hours</strong>, reducing MTTR significantly.</p>
           </div>
         </div>
       ),
     },
   ];
+
   return (
-    <section id="experience" className="relative w-full overflow-clip">
-      <Timeline data={data} />
+    <section id="experience" className="relative w-full bg-black py-24 md:py-32 font-sans overflow-hidden" ref={containerRef}>
+
+      {/* Header */}
+      <div className="max-w-7xl mx-auto px-6 md:px-10 relative z-10 mb-20 text-center flex flex-col items-center">
+        <div className="flex items-center gap-4 mb-4">
+          <div className="w-12 h-[1px] bg-neutral-700"></div>
+          <span className="text-[#a07cf6] font-mono text-xs md:text-sm tracking-[0.3em] uppercase">
+            OPERATION HISTORY
+          </span>
+          <div className="w-12 h-[1px] bg-neutral-700"></div>
+        </div>
+        <h2 className="text-white text-3xl md:text-5xl lg:text-6xl font-bold tracking-tighter">
+          Experience
+        </h2>
+      </div>
+
+      {/* Timeline Container */}
+      <div className="relative max-w-7xl mx-auto px-6 md:px-10 pb-20">
+        <div ref={lineRef} className="relative">
+          {data.map((item, index) => (
+            <div key={index} className="flex flex-col md:flex-row items-center justify-between mb-20 md:mb-32 group relative">
+
+              {/* Left: Role and Company */}
+              <div className="w-full md:w-5/12 text-left md:text-right mb-8 md:mb-0 relative z-10 order-2 md:order-1 flex flex-col md:items-end mt-4 md:mt-0">
+                <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-200 group-hover:text-white transition-colors duration-300 leading-tight md:pr-8 tracking-tight">
+                  {item.role}
+                  {item.subtitle && (
+                    <span className="text-lg md:text-xl text-neutral-400 font-normal mt-2 block tracking-normal">
+                      {item.subtitle}
+                    </span>
+                  )}
+                </h3>
+                <div className="mt-3 md:pr-8">
+                  <span className="text-[#a07cf6] text-xl md:text-2xl font-mono opacity-80 group-hover:opacity-100 transition-opacity tracking-wide">
+                    {item.company}
+                  </span>
+                </div>
+              </div>
+
+              {/* Center: Year and Glowing Node */}
+              <div className="w-full md:w-2/12 flex items-center justify-start md:justify-center relative z-20 order-1 md:order-2">
+                {/* Mobile Year display */}
+                <div className="md:hidden flex items-center gap-4 w-full pl-[5px]">
+                  <div className="h-4 w-4 rounded-full bg-black border border-[#a07cf6] flex items-center justify-center flex-shrink-0 z-20 relative shadow-[0_0_15px_rgba(160,124,246,0.3)]">
+                    <div className="h-2 w-2 rounded-full bg-[#a07cf6] opacity-80 group-hover:opacity-100 group-hover:animate-pulse transition-opacity" />
+                  </div>
+                  <h4 className="text-5xl font-bold text-neutral-200 tracking-tighter opacity-90 font-mono">
+                    {item.year}
+                  </h4>
+                </div>
+
+                {/* Desktop Year display overlay */}
+                <div className="hidden md:flex absolute inset-0 items-center justify-center pointer-events-none">
+                  <h4 className="text-5xl lg:text-7xl font-bold text-neutral-200 tracking-tighter opacity-90 group-hover:scale-105 transition-transform duration-500 bg-black/80 px-4 py-2 rounded-xl backdrop-blur-md z-30 font-mono">
+                    {item.year}
+                  </h4>
+                </div>
+
+                {/* Desktop Node (Hidden since we want the year to cover it, or we can put the node behind) */}
+                <div className="hidden md:flex absolute h-6 w-6 rounded-full bg-black items-center justify-center border border-neutral-800 group-hover:border-[#a07cf6]/50 transition-colors z-20 shadow-[0_0_0_rgba(160,124,246,0)] group-hover:shadow-[0_0_30px_rgba(160,124,246,0.5)]">
+                  <div className="h-2 w-2 rounded-full bg-neutral-800 group-hover:bg-[#a07cf6] transition-colors" />
+                </div>
+              </div>
+
+              {/* Right: Content Description */}
+              <div className="w-full md:w-5/12 text-left relative z-10 order-3 md:pl-8">
+                {/* Tactical Operation Card */}
+                <div className="bg-white/[0.01] md:bg-transparent border border-white/5 md:border-none backdrop-blur-sm md:backdrop-blur-none rounded-xl p-6 md:p-0 transition-all duration-500 group-hover:bg-white/[0.03] md:group-hover:bg-transparent relative">
+
+                  {/* Glitch element on hover */}
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-[#a07cf6]/5 rounded-full blur-3xl transition-opacity duration-500 opacity-0 group-hover:opacity-100 pointer-events-none -mr-10 -mt-10"></div>
+
+                  <div className="relative z-10">
+                    {item.content}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+
+          {/* Vertical Line */}
+          {/* Desktop Center Line */}
+          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2 bg-white/5 z-0" />
+          <motion.div
+            style={{
+              height: heightTransform,
+              opacity: opacityTransform,
+            }}
+            className="hidden md:block absolute left-1/2 top-0 -translate-x-1/2 w-[2px] bg-gradient-to-t from-[#a07cf6] via-[#d0bfff] to-transparent shadow-[0_0_20px_rgba(160,124,246,0.8)] z-10"
+          />
+
+          {/* Mobile Left Line */}
+          <div className="md:hidden absolute left-[35px] top-6 bottom-0 w-[2px] bg-white/5 z-0" />
+          <motion.div
+            style={{
+              height: heightTransform,
+              opacity: opacityTransform,
+            }}
+            className="md:hidden absolute left-[35px] top-6 w-[2px] bg-gradient-to-t from-[#a07cf6] via-[#d0bfff] to-transparent shadow-[0_0_15px_rgba(160,124,246,0.8)] z-10"
+          />
+
+        </div>
+      </div>
     </section>
   );
 }

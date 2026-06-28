@@ -6,6 +6,7 @@ import { LandingHero } from "@/components/landing-hero";
 import { Experience } from "@/components/experience";
 import { Projects } from "@/components/projects";
 import { Skills } from "@/components/skills";
+import { Certifications } from "@/components/certifications";
 import { Achievements } from "@/components/achievements";
 import { Footer } from "@/components/footer";
 import { useState, useEffect, useCallback } from "react";
@@ -71,6 +72,7 @@ export default function Home() {
             <Experience />
             <Projects />
             <Skills />
+            <Certifications />
             <Achievements />
             <Footer />
           </>
