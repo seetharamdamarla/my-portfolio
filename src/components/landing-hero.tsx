@@ -70,7 +70,7 @@ export function LandingHero() {
               A Dedicated
             </p>
             <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold leading-[1.05] flex flex-col items-start tracking-tight">
-              <span className="text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.5)]">
+              <span className="text-[#a07cf6]/20 [-webkit-text-stroke:1.5px_#a07cf6]">
                 CYBERSECURITY
               </span>
               <span className="text-white">
