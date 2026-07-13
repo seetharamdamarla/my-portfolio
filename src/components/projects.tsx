@@ -158,7 +158,7 @@ export function Projects() {
               <motion.div
                 key={project.id}
                 variants={cardVariants}
-                className={`group/project flex flex-col justify-between rounded-2xl bg-[#070708]/80 border border-white/5 p-5 md:p-6 backdrop-blur-xl relative overflow-hidden transition-all duration-500 ${project.glowClass}`}
+                className={`group/project flex flex-col justify-between rounded-2xl bg-[#070708]/80 border border-white/5 p-5 md:p-6  relative overflow-hidden transition-all duration-500 ${project.glowClass}`}
               >
                 {/* Tactical glowing scanline border top */}
                 <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-white/10 to-transparent group-hover/project:via-white/30 transition-all duration-500" />

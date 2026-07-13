@@ -162,7 +162,7 @@ export function Skills() {
       />
 
       {/* Cybernetic Grid Overlay for Tech Vibe */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:4rem_4rem]  pointer-events-none" />
 
       <div className="mx-auto max-w-6xl px-6 relative z-10">
         {/* Header Zone */}
@@ -214,7 +214,7 @@ export function Skills() {
               <motion.div
                 key={category.id}
                 variants={categoryVariants}
-                className={`group flex flex-col justify-start rounded-2xl bg-[#070708]/80 border border-white/5 p-6 md:p-8 backdrop-blur-xl relative overflow-hidden transition-all duration-500 ${category.borderHover}`}
+                className={`group flex flex-col justify-start rounded-2xl bg-[#070708]/80 border border-white/5 p-6 md:p-8  relative overflow-hidden transition-all duration-500 ${category.borderHover}`}
               >
                 {/* Custom Gradient Background Glow on Hover */}
                 <div className={`absolute -inset-px bg-gradient-to-br ${category.bgGlow} opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none rounded-2xl`} />

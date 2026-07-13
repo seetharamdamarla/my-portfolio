@@ -115,7 +115,7 @@ export function Experience() {
 
                 {/* Desktop Year display overlay */}
                 <div className="hidden md:flex absolute inset-0 items-center justify-center pointer-events-none">
-                  <h4 className="text-5xl lg:text-7xl font-bold text-neutral-200 tracking-tighter opacity-90 group-hover:scale-105 transition-transform duration-500 bg-black/80 px-4 py-2 rounded-xl backdrop-blur-md z-30 font-mono">
+                  <h4 className="text-5xl lg:text-7xl font-bold text-neutral-200 tracking-tighter opacity-90 group-hover:scale-105 transition-transform duration-500 bg-black/80 px-4 py-2 rounded-xl  z-30 font-mono">
                     {item.year}
                   </h4>
                 </div>
@@ -129,7 +129,7 @@ export function Experience() {
               {/* Right: Content Description */}
               <div className="w-full md:w-5/12 text-left relative z-10 order-3 md:pl-8">
                 {/* Tactical Operation Card */}
-                <div className="bg-white/[0.01] md:bg-transparent border border-white/5 md:border-none backdrop-blur-sm md:backdrop-blur-none rounded-xl p-6 md:p-0 transition-all duration-500 group-hover:bg-white/[0.03] md:group-hover:bg-transparent relative">
+                <div className="bg-white/[0.01] md:bg-transparent border border-white/5 md:border-none  md:-none rounded-xl p-6 md:p-0 transition-all duration-500 group-hover:bg-white/[0.03] md:group-hover:bg-transparent relative">
 
                   {/* Glitch element on hover */}
                   <div className="absolute top-0 right-0 w-32 h-32 bg-[#a07cf6]/5 rounded-full blur-3xl transition-opacity duration-500 opacity-0 group-hover:opacity-100 pointer-events-none -mr-10 -mt-10"></div>

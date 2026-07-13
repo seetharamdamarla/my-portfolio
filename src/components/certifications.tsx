@@ -1,89 +1,205 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { ShieldCheck } from "lucide-react";
+"use client";
+
+import React, { useRef, useState } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { Award, ExternalLink } from "lucide-react";
+
+interface CertProps {
+  title: string;
+  issuer: string;
+  image: string;
+  color: string;
+  date: string;
+  link: string;
+}
+
+const CERTS: CertProps[] = [
+  {
+    title: "Security Operations Analyst (SC-200)",
+    issuer: "Microsoft",
+    image: "/certs/sc-200.svg",
+    color: "rgba(0, 120, 212, 0.5)", // Microsoft Blue
+    date: "2024",
+    link: "https://drive.google.com/file/d/1ocxOhvFY4JXpu7txpW_GCyrDSq8n4IXq/view?usp=sharing",
+  },
+  {
+    title: "Google Cloud Certified",
+    issuer: "Google",
+    image: "/certs/google-cloud.png",
+    color: "rgba(234, 67, 53, 0.5)", // Google Red/Orange
+    date: "2023",
+    link: "https://www.credly.com/badges/581fe955-b65c-45ff-892d-e40e7c849ab0/public_url",
+  },
+  {
+    title: "Blue Team Junior Analyst",
+    issuer: "Security Blue Team",
+    image: "/certs/bjta.jpg",
+    color: "rgba(160, 124, 246, 0.5)", // Purple
+    date: "2023",
+    link: "https://drive.google.com/file/d/1EN01X-tIvNyBkfnj9NNy7HRHddYQg6Ix/view?usp=sharing",
+  }
+];
+
+function TiltCard({ cert }: { cert: CertProps }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const mouseXSpring = useSpring(x, { stiffness: 300, damping: 20 });
+  const mouseYSpring = useSpring(y, { stiffness: 300, damping: 20 });
+
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["12.5deg", "-12.5deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-12.5deg", "12.5deg"]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    const xPct = mouseX / width - 0.5;
+    const yPct = mouseY / height - 0.5;
+    x.set(xPct);
+    y.set(yPct);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    x.set(0);
+    y.set(0);
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        transformStyle: "preserve-3d",
+        rotateX,
+        rotateY,
+      }}
+      className="relative group w-full h-[400px] rounded-2xl bg-[#070708]/80 border border-white/5 p-6 flex flex-col justify-between cursor-pointer transition-colors duration-300 hover:border-white/20"
+    >
+      {/* Background Glow */}
+      <div 
+        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl -z-10 pointer-events-none"
+        style={{
+          background: `radial-gradient(circle at center, ${cert.color} 0%, transparent 60%)`
+        }}
+      />
+
+      {/* Image Container with 3D Pop */}
+      <div 
+        style={{ transform: "translateZ(50px)", transformStyle: "preserve-3d" }}
+        className="w-full h-48 rounded-xl bg-black/40 border border-white/5 flex items-center justify-center p-6 relative overflow-hidden mb-6"
+      >
+        <div 
+          className="absolute inset-0 opacity-20 group-hover:opacity-0 transition-opacity duration-500 pointer-events-none"
+          style={{
+            backgroundImage: "linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px)",
+            backgroundSize: "100% 4px"
+          }}
+        />
+        <img 
+          src={cert.image} 
+          alt={cert.title} 
+          className="w-full h-full object-contain filter drop-shadow-xl transition-transform duration-500 group-hover:scale-110" 
+        />
+      </div>
+
+      {/* Text Content */}
+      <div 
+        style={{ transform: "translateZ(30px)" }}
+        className="flex flex-col gap-2"
+      >
+        <div className="flex items-center justify-between">
+          <span className="text-[10px] md:text-xs font-mono text-neutral-400 uppercase tracking-widest">
+            {cert.issuer}
+          </span>
+          <span className="text-[10px] font-mono text-neutral-500 bg-white/5 px-2 py-1 rounded-md">
+            {cert.date}
+          </span>
+        </div>
+        <h3 className="text-lg md:text-xl font-bold text-white tracking-tight group-hover:text-blue-400 transition-colors duration-300">
+          {cert.title}
+        </h3>
+        <a 
+          href={cert.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-1 text-xs text-neutral-500 mt-2 hover:text-neutral-300 transition-colors w-fit relative z-20"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <span>View Credential</span>
+          <ExternalLink className="w-3 h-3" />
+        </a>
+      </div>
+    </motion.div>
+  );
+}
 
 export function Certifications() {
   return (
-    <section id="certifications" className="w-full bg-black py-24 md:py-32 relative overflow-hidden font-sans">
-      {/* Background decorations */}
+    <section id="certifications" className="w-full bg-[#030303] py-24 md:py-32 relative overflow-hidden font-sans">
+      {/* Background decorations matching the dark site */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.15)_50%),linear-gradient(90deg,rgba(255,255,255,0.005),rgba(255,255,255,0.002),rgba(255,255,255,0.005))] bg-[size:100%_6px,10px_100%] pointer-events-none z-0 opacity-40" />
       
       <div className="mx-auto max-w-6xl px-6 relative z-10">
-        {/* Header */}
         <div className="text-center mb-16 md:mb-24 flex flex-col items-center">
-          <div className="flex items-center gap-4 mb-4">
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="flex items-center gap-4 mb-4"
+          >
             <div className="w-12 h-[1px] bg-neutral-700"></div>
             <span className="text-[#a07cf6] font-mono text-xs md:text-sm tracking-[0.3em] uppercase">
               CREDENTIALS
             </span>
             <div className="w-12 h-[1px] bg-neutral-700"></div>
-          </div>
-          <h2 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter">
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight flex items-center justify-center gap-4 leading-none"
+          >
             Certifications
-          </h2>
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.25 }}
+            className="text-sm md:text-base text-neutral-400 font-medium mt-6 max-w-xl text-center leading-relaxed"
+          >
+            Professional recognitions, security badges, and cloud achievements verified by industry leaders.
+          </motion.p>
         </div>
 
-        {/* Certifications Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {/* Certificate Card */}
-          <div className="group relative w-full rounded-2xl bg-[#070708]/80 border border-white/5 backdrop-blur-xl p-6 md:p-8 overflow-hidden transition-all duration-500 hover:border-[#a07cf6]/50 hover:bg-black/60 shadow-lg hover:shadow-[0_8px_30px_rgba(160,124,246,0.15)] md:col-span-2">
-            
-            {/* Background Glitch */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[#a07cf6]/10 rounded-full blur-3xl transition-opacity duration-700 opacity-0 group-hover:opacity-100 pointer-events-none -mr-20 -mt-20"></div>
-
-            <div className="flex flex-col md:flex-row gap-8 items-center relative z-10">
-              
-              {/* Image Container */}
-              <div className="w-full md:w-1/2 rounded-xl overflow-hidden border border-white/10 bg-black/50 group-hover:border-[#a07cf6]/30 transition-colors relative shadow-2xl">
-                {/* Scanline overlay over image */}
-                <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%)] bg-[size:100%_4px] pointer-events-none z-10 opacity-20 group-hover:opacity-0 transition-opacity" />
-                <img 
-                  src="/Blue Team Junior Analyst_page-0001.jpg" 
-                  alt="Blue Team Junior Analyst Certification" 
-                  className="w-full h-auto object-cover relative z-0 transition-transform duration-700 group-hover:scale-[1.02]"
-                />
-              </div>
-
-              {/* Details */}
-              <div className="w-full md:w-1/2 flex flex-col justify-center">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <ShieldCheck className="text-[#a07cf6] w-6 h-6" />
-                    <span className="text-[10px] md:text-xs font-mono tracking-widest uppercase text-green-400 bg-green-500/10 border border-green-500/20 px-2 py-0.5 rounded-full flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
-                      VERIFIED
-                    </span>
-                  </div>
-                </div>
-                
-                <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-2 group-hover:text-[#a07cf6] transition-colors duration-300">
-                  Blue Team Junior Analyst
-                </h3>
-                
-                <p className="text-neutral-400 font-mono text-sm uppercase tracking-wider mb-6">
-                  Defensive Security Credential
-                </p>
-                
-                <div className="w-full h-[1px] bg-white/5 mb-6" />
-                
-                <p className="text-neutral-300 text-sm md:text-base leading-relaxed mb-6 font-mono">
-                  <span className="text-neutral-500 font-bold select-none text-lg leading-none mr-2">{'>'}</span> 
-                  Proven practical ability across 6 core defensive security domains, completing hands-on assessments in digital forensics, threat hunting, OSINT, and network analysis.
-                </p>
-
-                <div className="flex flex-wrap gap-2">
-                  {["OSINT", "Digital Forensics", "Vuln Management", "DarkWeb Ops", "Threat Hunting", "Network Analysis"].map((skill) => (
-                    <span
-                      key={skill}
-                      className="px-2 py-1 rounded-md bg-neutral-900 border border-white/5 text-[10px] md:text-xs font-mono text-neutral-400 group-hover:border-white/10 group-hover:text-neutral-300 transition-colors duration-300"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
+        {/* The 3D Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+          {CERTS.map((cert, i) => (
+            <motion.div
+              key={cert.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.15 }}
+              style={{ perspective: "1000px" }}
+            >
+              <TiltCard cert={cert} />
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

@@ -87,7 +87,7 @@ export function Achievements() {
   return (
     <section id="achievements" className="w-full bg-black py-24 md:py-32 relative overflow-hidden">
       {/* Cyber Grid overlay for high-tech viber */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:4rem_4rem]  pointer-events-none z-0" />
 
       {/* Subtle star dots */}
       <div
@@ -120,7 +120,7 @@ export function Achievements() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-none"
           >
-            Accolades &amp; Achievements
+            Achievements
           </motion.h2>
 
           <motion.p
@@ -148,7 +148,7 @@ export function Achievements() {
               <motion.div
                 key={achievement.id}
                 variants={cardVariants}
-                className={`group/achievement flex flex-col justify-between rounded-2xl bg-[#070708]/80 border border-white/5 p-6 backdrop-blur-xl relative overflow-hidden transition-all duration-500 hover:-translate-y-2 ${achievement.glowClass}`}
+                className={`group/achievement flex flex-col justify-between rounded-2xl bg-[#070708]/80 border border-white/5 p-6  relative overflow-hidden transition-all duration-500 hover:-translate-y-2 ${achievement.glowClass}`}
               >
                 {/* Micro-glow bar at the top */}
                 <div className={`absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-white/10 to-transparent group-hover/achievement:via-white/30 transition-all duration-500`} />
