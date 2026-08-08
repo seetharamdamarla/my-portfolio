@@ -24,37 +24,21 @@ export function Experience() {
 
   const data = [
     {
-      year: "2025",
-      role: "Cybersecurity Intern",
-      subtitle: "Web App Security",
-      company: "CodeAlpha",
+      year: "2026",
+      period: "Jul 2026 – Present",
+      role: "Research Intern",
+      subtitle: "Malware Analysis & Ransomware Research",
+      company: "Indian Institute of Technology (IIT) Tirupati",
+      location: "Tirupati",
       content: (
         <div className="space-y-5 font-mono">
           <div className="flex items-start gap-3 text-sm md:text-base text-neutral-400 leading-relaxed group/item">
             <span className="text-neutral-500 font-bold mt-0.5 select-none text-lg leading-none transition-transform group-hover/item:translate-x-1">{'>'}</span>
-            <p>Executed OWASP Top 10 assessments on live web apps, uncovering <strong className="text-white font-medium bg-white/10 px-1.5 py-0.5 rounded">15+ critical vulnerabilities</strong> (SQLi, XSS, broken auth).</p>
+            <p>Conducting research on <strong className="text-white font-medium bg-white/10 px-1.5 py-0.5 rounded">malware analysis and ransomware</strong>, focusing on understanding malware behavior, attack techniques, and detection methodologies.</p>
           </div>
           <div className="flex items-start gap-3 text-sm md:text-base text-neutral-400 leading-relaxed group/item">
             <span className="text-neutral-500 font-bold mt-0.5 select-none text-lg leading-none transition-transform group-hover/item:translate-x-1">{'>'}</span>
-            <p>Deployed firewall ACL rules achieving a <strong className="text-white font-medium bg-white/10 px-1.5 py-0.5 rounded">30% reduction</strong> in exploitable attack surface.</p>
-          </div>
-        </div>
-      ),
-    },
-    {
-      year: "2025",
-      role: "Cybersecurity Intern",
-      subtitle: "Network Security & VAPT",
-      company: "Elevate Labs",
-      content: (
-        <div className="space-y-5 font-mono">
-          <div className="flex items-start gap-3 text-sm md:text-base text-neutral-400 leading-relaxed group/item">
-            <span className="text-neutral-500 font-bold mt-0.5 select-none text-lg leading-none transition-transform group-hover/item:translate-x-1">{'>'}</span>
-            <p>Detected and documented <strong className="text-white font-medium bg-white/10 px-1.5 py-0.5 rounded">20+ critical network vulnerabilities</strong> through deep-packet inspection with Wireshark, earning <strong className="text-white font-medium text-[#a07cf6]">"Best Performer"</strong> recognition.</p>
-          </div>
-          <div className="flex items-start gap-3 text-sm md:text-base text-neutral-400 leading-relaxed group/item">
-            <span className="text-neutral-500 font-bold mt-0.5 select-none text-lg leading-none transition-transform group-hover/item:translate-x-1">{'>'}</span>
-            <p>Delivered structured CVSS-scored remediation reports that enabled developers to patch critical exploits within <strong className="text-white font-medium bg-white/10 px-1.5 py-0.5 rounded">48 hours</strong>, reducing MTTR significantly.</p>
+            <p>Performing <strong className="text-white font-medium bg-white/10 px-1.5 py-0.5 rounded">static and dynamic malware analysis</strong> while studying reverse engineering techniques and modern ransomware mechanisms to support cybersecurity research.</p>
           </div>
         </div>
       ),
@@ -94,10 +78,15 @@ export function Experience() {
                     </span>
                   )}
                 </h3>
-                <div className="mt-3 md:pr-8">
+                <div className="mt-3 md:pr-8 flex flex-col items-start md:items-end gap-1">
                   <span className="text-[#a07cf6] text-xl md:text-2xl font-mono opacity-80 group-hover:opacity-100 transition-opacity tracking-wide">
                     {item.company}
                   </span>
+                  {item.period && (
+                    <span className="text-xs md:text-sm text-neutral-400 font-mono">
+                      {item.period} {item.location && `• ${item.location}`}
+                    </span>
+                  )}
                 </div>
               </div>
 
